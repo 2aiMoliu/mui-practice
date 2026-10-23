@@ -30,7 +30,7 @@ The stack may change; the trajectory does not:
 
 ## Definition of done
 
-A change is done when: `npm run check && npm run build` passes; the change is pushed to `main`; the GitHub Actions run is green; and https://2aimoliu.github.io/mui-practice shows the expected content.
+A change is done when: `pnpm run check && pnpm run build` passes; the change is pushed to `main`; the GitHub Actions run is green; and https://2aimoliu.github.io/mui-practice shows the expected content.
 
 ## Growth rule
 
