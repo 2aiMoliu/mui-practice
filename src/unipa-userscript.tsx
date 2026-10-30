@@ -61,9 +61,9 @@ function OverlayApp() {
   )
 }
 
-// Top frame only (no duplicated overlays in portal iframes), and never the
-// LOGIN screen — it carries a password field.
-if (window === window.top && !document.querySelector('input[type="password"]')) {
+// Top frame only — the userscript stub (scripts/make-userscript.mjs) has
+// already gated the LOGIN screen and frames before fetching this bundle.
+if (window === window.top) {
   const host = document.createElement('div')
   document.body.appendChild(host)
   createRoot(host).render(<OverlayApp />)
