@@ -14,6 +14,8 @@
   --mp-text: rgba(0, 0, 0, 0.87);
   --mp-text-2: rgba(0, 0, 0, 0.6);
   --mp-error: #d32f2f;
+  --mp-radius: 8px;
+  --mp-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 /* ---- base ---------------------------------------------------------------- */
@@ -25,7 +27,7 @@ body {
   font-size: 14px;
 }
 
-a { color: var(--mp-primary); }
+a { color: var(--mp-primary); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 h1, h2, h3, h4, h5, h6 { font-weight: 700; }
@@ -52,6 +54,17 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
 }
 .ui-state-hover { background: var(--mp-primary-soft) !important; }
 
+/* ---- page column -> one elevated card ------------------------------------- */
+
+#portalCont {
+  background: var(--mp-paper) !important;
+  border: 1px solid var(--mp-border) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--mp-shadow) !important;
+  margin-top: 16px !important;
+  padding: 8px 20px 28px !important;
+}
+
 /* ---- PrimeFaces buttons -> MUI outlined ---------------------------------- */
 
 .ui-button {
@@ -74,40 +87,60 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
 .ui-button .ui-icon { color: inherit; }
 
 /* ---- tabs -> MUI tabs (indicator style) ----------------------------------- */
+/* UNIPA page CSS fights back with its own active-tab borders/colors; every
+   property here carries !important and the selectors outrank its page css. */
 
 .ui-tabs {
   background: transparent !important;
   border: none !important;
   padding: 0 !important;
 }
-.ui-tabs-nav {
-  background: var(--mp-paper) !important;
+.ui-tabs .ui-tabs-nav,
+.ui-tabs .ui-tabs-nav.ui-widget-header {
+  background: transparent !important;
   background-image: none !important;
-  border: 1px solid var(--mp-border) !important;
-  border-radius: 8px 8px 0 0 !important;
+  border: none !important;
+  border-bottom: 1px solid var(--mp-border) !important;
+  border-radius: 0 !important;
   padding: 0 8px !important;
 }
-.ui-tabs-nav li {
+.ui-tabs .ui-tabs-nav li,
+.ui-tabs .ui-tabs-nav li.ui-state-default,
+.ui-tabs .ui-tabs-nav li.ui-state-active,
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected,
+.ui-tabs .ui-tabs-nav li.ui-state-hover {
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  margin: 0 4px !important;
+  top: 0 !important;
+}
+.ui-tabs .ui-tabs-nav li a,
+.ui-tabs .ui-tabs-nav li.ui-state-active a,
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a {
   background: transparent !important;
   border: none !important;
-  margin: 0 8px !important;
+  outline: none !important;
   box-shadow: none !important;
-}
-.ui-tabs-nav li a {
   color: var(--mp-text-2) !important;
   font-weight: 600 !important;
-  padding: 12px 4px !important;
+  padding: 12px 6px !important;
   border-bottom: 2px solid transparent !important;
 }
-.ui-tabs-nav li.ui-tabs-selected a,
-.ui-tabs-nav li[aria-selected='true'] a {
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a,
+.ui-tabs .ui-tabs-nav li[aria-selected='true'] a,
+.ui-tabs .ui-tabs-nav li.ui-state-active a {
   color: var(--mp-primary) !important;
   border-bottom: 2px solid var(--mp-primary) !important;
 }
-.ui-tabs-panel {
+.ui-tabs .ui-tabs-panel,
+.ui-tabs .ui-tabs-panel.ui-widget-content {
   background: var(--mp-paper) !important;
   border: 1px solid var(--mp-border) !important;
-  border-radius: 0 0 8px 8px !important;
+  border-radius: var(--mp-radius) !important;
   padding: 16px !important;
 }
 
@@ -117,6 +150,10 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
   background: var(--mp-paper) !important;
   background-image: none !important;
   border-color: var(--mp-border) !important;
+}
+.ui-menubar.ui-menu, .ui-menubar {
+  border-radius: var(--mp-radius);
+  box-shadow: var(--mp-shadow);
 }
 .ui-menu .ui-menuitem-link {
   color: var(--mp-text) !important;
@@ -130,13 +167,45 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; }
   color: var(--mp-primary) !important;
 }
 .ui-menu-child {
-  border-radius: 8px !important;
+  border-radius: var(--mp-radius) !important;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16) !important;
 }
 .ui-menu-child h3 {
   color: var(--mp-text-2) !important;
   font-size: 12px !important;
   font-weight: 700 !important;
+}
+
+/* ---- section headers (Information / Schedule / All day / Events / links) --- */
+
+.portalSub h2,
+.portalSub h3,
+.portalMain h3,
+#portalSchedule1 h3 {
+  background: none !important;
+  background-image: none !important;
+  border: none !important;
+  border-left: 4px solid var(--mp-primary) !important;
+  border-radius: 0 !important;
+  color: var(--mp-primary) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  padding: 2px 0 2px 10px !important;
+  text-shadow: none !important;
+}
+
+/* ---- info icon tiles (Bulletin / Change schedule / MyStep / ClassProfile) -- */
+
+.ui-panel.infoBtn {
+  background: var(--mp-paper) !important;
+  background-image: none !important;
+  border: 1px solid var(--mp-border) !important;
+  border-radius: var(--mp-radius) !important;
+  transition: box-shadow 0.15s;
+}
+.ui-panel.infoBtn:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
 }
 
 /* ---- tables -> MUI data table --------------------------------------------- */
@@ -186,6 +255,28 @@ tr:hover td { background: #f7f9f8 !important; }
 .lessonAttend {
   color: var(--mp-primary) !important;
   font-weight: 600 !important;
+}
+
+/* ---- header date line ------------------------------------------------------ */
+
+header .loginInfo {
+  font-weight: 700 !important;
+}
+
+/* ---- UNIPA sign badges (Bulletin) -> MUI chips ------------------------------ */
+
+.signPortal {
+  background: var(--mp-paper) !important;
+  background-image: none !important;
+  border-radius: 4px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 2px 8px !important;
+  text-decoration: none !important;
+}
+.signPortalKeiji {
+  border: 1px solid var(--mp-error) !important;
+  color: var(--mp-error) !important;
 }
 
 /* ---- misc chrome ----------------------------------------------------------- */
