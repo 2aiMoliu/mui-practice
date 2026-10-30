@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "vite",
     "check": "tsc -b && oxlint",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && pnpm run build:userscript",
+    "build:userscript": "vite build --config vite.userscript.config.ts && node scripts/make-userscript.mjs",
     "lint": "oxlint",
     "preview": "vite preview"
   },
