@@ -25,7 +25,7 @@ const stub = `
     fetch(SRC + '?t=' + Date.now())
       .then((r) => r.text())
       .then((js) => (0, eval)(js))
-      .catch(() => {})
+      .catch((e) => console.error('[mui-practice] overlay failed to load', e))
   // LOGIN gate: a password box that is actually rendered. UNIPA keeps hidden
   // ones in the post-login DOM, and the login itself is an ajax postback, so
   // both the visibility test and the settle-watcher below are required.
