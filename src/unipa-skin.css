@@ -1,0 +1,223 @@
+/*
+ * UNIPA skin (mui-practice) — pure-CSS wrap over the real portal.
+ * Applies the demo's MUI design language to PrimeFaces (ui-*) markup.
+ * Adds no content, replaces no text; every link, form and JSF postback
+ * keeps its original behavior.
+ */
+
+:root {
+  --mp-primary: #0a6b4a;
+  --mp-primary-soft: rgba(10, 107, 74, 0.08);
+  --mp-bg: #f4f7f5;
+  --mp-paper: #ffffff;
+  --mp-border: #dfe5e2;
+  --mp-text: rgba(0, 0, 0, 0.87);
+  --mp-text-2: rgba(0, 0, 0, 0.6);
+  --mp-error: #d32f2f;
+}
+
+/* ---- base ---------------------------------------------------------------- */
+
+body {
+  background: var(--mp-bg) !important;
+  color: var(--mp-text) !important;
+  font-family: Roboto, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, system-ui, sans-serif !important;
+  font-size: 14px;
+}
+
+a { color: var(--mp-primary); }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3, h4, h5, h6 { font-weight: 700; }
+
+/* PrimeFaces ships gradient sprites — flatten them globally. */
+.ui-widget, .ui-widget .ui-state-default, .ui-widget .ui-state-hover, .ui-widget .ui-state-active {
+  font-family: inherit;
+}
+.ui-widget-header,
+.ui-widget-header .ui-state-default,
+.ui-widget-header .ui-state-hover,
+.ui-widget-header .ui-state-active {
+  background: var(--mp-primary) !important;
+  background-image: none !important;
+  border-color: var(--mp-primary) !important;
+  color: #fff !important;
+}
+.ui-widget-content,
+.ui-widget-content .ui-state-default {
+  background: var(--mp-paper) !important;
+  background-image: none !important;
+  border-color: var(--mp-border) !important;
+  color: var(--mp-text);
+}
+.ui-state-hover { background: var(--mp-primary-soft) !important; }
+
+/* ---- PrimeFaces buttons -> MUI outlined ---------------------------------- */
+
+.ui-button {
+  background: var(--mp-paper) !important;
+  background-image: none !important;
+  border: 1px solid var(--mp-primary) !important;
+  border-radius: 4px !important;
+  color: var(--mp-primary) !important;
+  font-weight: 600 !important;
+  font-family: inherit !important;
+  text-transform: none !important;
+  box-shadow: none !important;
+  transition: background-color 0.15s;
+}
+.ui-button:hover,
+.ui-button:active {
+  background: var(--mp-primary-soft) !important;
+  border-color: var(--mp-primary) !important;
+}
+.ui-button .ui-icon { color: inherit; }
+
+/* ---- tabs -> MUI tabs (indicator style) ----------------------------------- */
+
+.ui-tabs {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+.ui-tabs-nav {
+  background: var(--mp-paper) !important;
+  background-image: none !important;
+  border: 1px solid var(--mp-border) !important;
+  border-radius: 8px 8px 0 0 !important;
+  padding: 0 8px !important;
+}
+.ui-tabs-nav li {
+  background: transparent !important;
+  border: none !important;
+  margin: 0 8px !important;
+  box-shadow: none !important;
+}
+.ui-tabs-nav li a {
+  color: var(--mp-text-2) !important;
+  font-weight: 600 !important;
+  padding: 12px 4px !important;
+  border-bottom: 2px solid transparent !important;
+}
+.ui-tabs-nav li.ui-tabs-selected a,
+.ui-tabs-nav li[aria-selected='true'] a {
+  color: var(--mp-primary) !important;
+  border-bottom: 2px solid var(--mp-primary) !important;
+}
+.ui-tabs-panel {
+  background: var(--mp-paper) !important;
+  border: 1px solid var(--mp-border) !important;
+  border-radius: 0 0 8px 8px !important;
+  padding: 16px !important;
+}
+
+/* ---- menus ---------------------------------------------------------------- */
+
+.ui-menubar, .ui-menu {
+  background: var(--mp-paper) !important;
+  background-image: none !important;
+  border-color: var(--mp-border) !important;
+}
+.ui-menu .ui-menuitem-link {
+  color: var(--mp-text) !important;
+  background: transparent !important;
+  background-image: none !important;
+  border-radius: 4px;
+}
+.ui-menu .ui-menuitem-link:hover,
+.ui-menu .ui-menuitem-link.ui-state-hover {
+  background: var(--mp-primary-soft) !important;
+  color: var(--mp-primary) !important;
+}
+.ui-menu-child {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16) !important;
+}
+.ui-menu-child h3 {
+  color: var(--mp-text-2) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+
+/* ---- tables -> MUI data table --------------------------------------------- */
+
+table { border-collapse: collapse; }
+th.ui-state-default, th.ui-widget-header, thead th {
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-bottom: 1px solid var(--mp-border) !important;
+  color: var(--mp-text-2) !important;
+  font-weight: 600 !important;
+}
+td {
+  border-bottom: 1px solid var(--mp-border) !important;
+}
+tr:hover td { background: #f7f9f8 !important; }
+
+/* ---- dialogs -> MUI Dialog ------------------------------------------------ */
+
+.ui-dialog {
+  border-radius: 12px !important;
+  border: none !important;
+  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14) !important;
+}
+.ui-dialog-titlebar {
+  border-radius: 12px 12px 0 0 !important;
+  padding: 12px 16px !important;
+  font-weight: 700 !important;
+}
+.ui-dialog-content { padding: 16px !important; }
+
+/* ---- messages -> MUI Alert tint ------------------------------------------- */
+
+.ui-messages > div, .ui-messages-info, .ui-messages-warn, .ui-messages-error {
+  border-radius: 4px !important;
+  border-width: 1px !important;
+  background-image: none !important;
+}
+
+/* ---- UNIPA lesson blocks (schedule) --------------------------------------- */
+
+.lessonHead .period {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.lessonAttend {
+  color: var(--mp-primary) !important;
+  font-weight: 600 !important;
+}
+
+/* ---- misc chrome ----------------------------------------------------------- */
+
+input[type='text'], input[type='password'], input[type='tel'], select, textarea {
+  border: 1px solid #c4c9c6 !important;
+  border-radius: 4px !important;
+  font-family: inherit !important;
+  padding: 6px 8px !important;
+  background: var(--mp-paper) !important;
+  color: var(--mp-text) !important;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none !important;
+  border-color: var(--mp-primary) !important;
+  box-shadow: 0 0 0 1px var(--mp-primary) !important;
+}
+
+/* text-only NEW badges, marked by the userscript (class only — no text edits) */
+.mp-chip-new {
+  display: inline-block;
+  background: var(--mp-error) !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  font-size: 10px !important;
+  line-height: 16px !important;
+  font-weight: 700 !important;
+  padding: 0 6px !important;
+  vertical-align: middle !important;
+}
+img[alt='NEW'], img[src*='new' i] {
+  border-radius: 999px;
+}
+
+/* ---- skin toggle button (styles kept inline in the script, not here) ------- */
